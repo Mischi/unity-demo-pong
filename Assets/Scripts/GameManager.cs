@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        var zPositionInWorldView = -1 * Camera.main.transform.position.z;
+        var zPositionInWorldView = Mathf.Abs(Camera.main.transform.position.z);
         bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, zPositionInWorldView));
         topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, zPositionInWorldView));
         Debug.Log($"GameManager bottomLeft: {bottomLeft}, topRight: {topRight}");
