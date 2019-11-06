@@ -34,17 +34,18 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
-
-        if ((transform.position.y < GameManager.bottomLeft.y + radius && direction.y < 0) ||
-            (transform.position.y > GameManager.topRight.y - radius && direction.y > 0))
-        {
-            direction.y = -direction.y;
-        }
-
-
         if (isActive)
         {
+            transform.Translate(direction * speed * Time.deltaTime);
+
+            // invert direction if the ball reaches top or bottom boundaries
+            if ((transform.position.y < GameManager.bottomLeft.y + radius && direction.y < 0) ||
+                (transform.position.y > GameManager.topRight.y - radius && direction.y > 0))
+            {
+                direction.y = -direction.y;
+            }
+
+            // announce winner if the ball reaches left or right boundaries
             if (transform.position.x < GameManager.bottomLeft.x + radius && direction.x < 0)
             {
                 isActive = false;
